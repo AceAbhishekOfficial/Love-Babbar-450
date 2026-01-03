@@ -1,35 +1,19 @@
-import java.util.Arrays;
+public class s11 {
+    public int findDuplicate(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
 
-class s11 {
-    public void mergeArrays(int a[], int b[]) {
-        // code here
+        slow = nums[0];
+        while(slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        } 
 
-        int j = 0;
-        
-        for(int i = 0;i<a.length;i++) {
-            if(a[i] > b[j]) {
-                swap(i,j,a,b);
-            }
-        }
-        Arrays.sort(b);
-    }
-    
-    public static void swap(int i, int j , int[] a, int[] b) {
-        int first = b[j];
-        int last = a[a.length-1];
-        
-        for(int x = a.length-1;x>i;x--) {
-            a[x] = a[x-1];
-        }
-        for(int x = j;x<b.length-1;x++) {
-            b[x] = b[x+1];
-        }
-        
-        a[i] = first;
-
-        b[b.length-1] = last;
+        return slow;
         
     }
-    
-
-}
+} 
